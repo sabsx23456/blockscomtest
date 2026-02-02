@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+        {
+            "source": "/wccstream/:path*",
+            "destination": "https://stream.wccgames7.xyz/wccstream/:path*"
+        },
+        {
+            "source": "/((?!assets/|.*\\..*).*)",
+            "destination": "/index.html"
+        }
+    ]
+}
