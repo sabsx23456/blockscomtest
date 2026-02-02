@@ -67,8 +67,8 @@ export const EventManagementPage = () => {
             .select(`
                 *,
                 matches (
-                    id, status, fight_id, created_at, winner, meron_name, wala_name,
-                    meron_total, wala_total, draw_total
+                    id, status, fight_number, created_at, winner,
+                    meron_total_bet, wala_total_bet
                 )
             `)
             .order('created_at', { ascending: false });
@@ -291,7 +291,7 @@ export const EventManagementPage = () => {
                                         {latestMatch ? (
                                             <div className="space-y-2">
                                                 <div className="flex items-center justify-between">
-                                                    <span className="text-white font-bold">{latestMatch.fight_id || `Match #${latestMatch.id.slice(0, 4)}`}</span>
+                                                    <span className="text-white font-bold">{latestMatch.fight_number ? `Fight #${latestMatch.fight_number}` : `Match #${latestMatch.id.slice(0, 4)}`}</span>
                                                     {latestMatch.status === 'finished' && latestMatch.winner && (
                                                         <span className={clsx(
                                                             "text-xs font-black uppercase",
@@ -302,24 +302,24 @@ export const EventManagementPage = () => {
                                                     )}
                                                 </div>
                                                 <div className="text-xs text-casino-slate-400 flex justify-between">
-                                                    <span>{latestMatch.meron_name || 'MERON'}</span>
+                                                    <span>MERON</span>
                                                     <span>vs</span>
-                                                    <span>{latestMatch.wala_name || 'WALA'}</span>
+                                                    <span>WALA</span>
                                                 </div>
 
                                                 {/* POOL TOTALS ROW */}
                                                 <div className="pt-3 flex gap-2 border-t border-white/5 mt-2">
                                                     <div className="flex-1 text-center">
                                                         <div className="text-[8px] font-bold text-red-500 uppercase tracking-tighter">Meron</div>
-                                                        <div className="text-xs font-black text-white">₱{(latestMatch.meron_total || 0).toLocaleString()}</div>
+                                                        <div className="text-xs font-black text-white">₱{(latestMatch.meron_total_bet || 0).toLocaleString()}</div>
                                                     </div>
                                                     <div className="flex-1 text-center border-x border-white/5">
                                                         <div className="text-[8px] font-bold text-green-500 uppercase tracking-tighter">Draw</div>
-                                                        <div className="text-xs font-black text-white">₱{(latestMatch.draw_total || 0).toLocaleString()}</div>
+                                                        <div className="text-xs font-black text-white">-</div>
                                                     </div>
                                                     <div className="flex-1 text-center">
                                                         <div className="text-[8px] font-bold text-blue-500 uppercase tracking-tighter">Wala</div>
-                                                        <div className="text-xs font-black text-white">₱{(latestMatch.wala_total || 0).toLocaleString()}</div>
+                                                        <div className="text-xs font-black text-white">₱{(latestMatch.wala_total_bet || 0).toLocaleString()}</div>
                                                     </div>
                                                 </div>
                                             </div>

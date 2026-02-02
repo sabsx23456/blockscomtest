@@ -56,6 +56,7 @@ export interface Match {
     meron_bet_total?: number;
     wala_bet_total?: number;
     fight_id?: string;
+    fight_number?: number; // DB Column
     is_maintain_mode?: boolean;
     event_id?: string;
     meron_injection_target?: number;
@@ -63,6 +64,8 @@ export interface Match {
     meron_total?: number; // Server-side aggregated
     wala_total?: number; // Server-side aggregated
     draw_total?: number; // Server-side aggregated
+    meron_total_bet?: number; // DB Column
+    wala_total_bet?: number; // DB Column
     meron_injected?: number; // Injection Only
     wala_injected?: number; // Injection Only
     draw_injected?: number; // Injection Only
