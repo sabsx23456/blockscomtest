@@ -200,7 +200,7 @@ export const Register = () => {
             <div className="w-full max-w-sm">
                 {/* Logo */}
                 <div className="text-center mb-6">
-                    <img src={Logo} alt="SABONG192" className="w-36 h-auto mx-auto mb-4" />
+                    <img src={Logo} alt="Sabong XYZ" className="w-36 h-auto mx-auto mb-4" />
                 </div>
 
                 <div className="glass-panel rounded-2xl p-5 border border-white/5">

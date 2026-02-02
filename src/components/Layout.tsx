@@ -100,10 +100,10 @@ export const Layout = () => {
                     </button>
 
                     <Link to="/" className="flex items-center gap-2">
-                        <img src={Logo} alt="SABONG192" className="w-8 h-8 object-contain" />
+                        <img src={Logo} alt="Sabong XYZ" className="w-8 h-8 object-contain" />
                         <h1 className="text-base font-bold tracking-tight hidden sm:block">
-                            <span className="text-white">SABONG</span>
-                            <span className="text-casino-gold-500">192</span>
+                            <span className="text-white">Sabong</span>
+                            <span className="text-casino-gold-500"> XYZ</span>
                         </h1>
                     </Link>
                 </div>

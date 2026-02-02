@@ -80,7 +80,7 @@ export const Login = () => {
                 <div className="text-center mb-6">
                     <img
                         src={Logo}
-                        alt="SABONG192"
+                        alt="Sabong XYZ"
                         className="w-36 h-auto mx-auto drop-shadow-[0_0_25px_rgba(255,204,0,0.3)]"
                     />
                 </div>
