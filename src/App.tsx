@@ -84,11 +84,19 @@ function App() {
                 <Route path="/transactions" element={<TransactionsPage />} />
                 <Route path="/history" element={<BetHistoryPage />} />
                 <Route path="/wallet" element={<WalletPage />} />
-                <Route path="/betting" element={<BettingAdminPage />} />
+                <Route path="/betting" element={
+                  <div className="theme-legacy-gold w-full h-full contents">
+                    <BettingAdminPage />
+                  </div>
+                } />
                 <Route path="/pending" element={<PendingApproval />} />
                 <Route path="/support" element={<ChatSupportPage />} />
                 <Route path="/events" element={<EventManagementPage />} />
-                <Route path="/events/:eventId" element={<EventDetailPage />} />
+                <Route path="/events/:eventId" element={
+                  <div className="theme-legacy-gold w-full h-full contents">
+                    <EventDetailPage />
+                  </div>
+                } />
                 <Route path="/match-history" element={<MatchHistoryPage />} />
                 <Route path="/rewards" element={<RewardsPage />} />
               </Route>

@@ -3,17 +3,18 @@
 @theme {
   /* Modern Vegas Casino Theme - Ultra Luxury */
   
-  /* Electric Gold - Primary Accent */
-  --color-casino-gold-50: #fffdf5;
-  --color-casino-gold-100: #fff9e0;
-  --color-casino-gold-200: #fff2b8;
-  --color-casino-gold-300: #ffe680;
-  --color-casino-gold-400: #ffd633;
-  --color-casino-gold-500: #ffcc00;
-  --color-casino-gold-600: #e6b800;
-  --color-casino-gold-700: #b38f00;
-  --color-casino-gold-800: #8a6d00;
-  --color-casino-gold-900: #5c4800;
+  /* Online Green - Primary Accent (Replaces Gold globally) */
+  --color-casino-gold-50: #f0fdf4;
+  --color-casino-gold-100: #dcfce7;
+  --color-casino-gold-200: #bbf7d0;
+  --color-casino-gold-300: #86efac;
+  --color-casino-gold-400: #4ade80;
+  --color-casino-gold-500: #00ff9d; /* Neon Online Green */
+  --color-casino-gold-600: #16a34a;
+  --color-casino-gold-700: #15803d;
+  --color-casino-gold-800: #166534;
+  --color-casino-gold-900: #14532d;
+
 
   /* Cool Grays - Text Hierarchy */
   --color-casino-slate-50: #f8fafc;
@@ -45,6 +46,20 @@
 
   --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Legacy Gold Theme Override for Betting Page */
+.theme-legacy-gold {
+  --color-casino-gold-50: #fffdf5;
+  --color-casino-gold-100: #fff9e0;
+  --color-casino-gold-200: #fff2b8;
+  --color-casino-gold-300: #ffe680;
+  --color-casino-gold-400: #ffd633;
+  --color-casino-gold-500: #ffcc00;
+  --color-casino-gold-600: #e6b800;
+  --color-casino-gold-700: #b38f00;
+  --color-casino-gold-800: #8a6d00;
+  --color-casino-gold-900: #5c4800;
 }
 
 /* Custom Utilities - Ultra Modern */
