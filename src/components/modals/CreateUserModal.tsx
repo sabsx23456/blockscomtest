@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../../lib/supabase';
 import { X, UserPlus, Loader, CheckCircle2 } from 'lucide-react';
 import type { UserRole } from '../../types';
 
@@ -31,10 +31,6 @@ export const CreateUserModal = ({
     const [error, setError] = useState<string | null>(null);
     const [showSuccess, setShowSuccess] = useState(false);
 
-    // Create a temporary client ONLY when the modal is active to avoid global warnings
-    // We use useState instead of useMemo to ensure it's stable, or just creating it when needed.
-    // However, createClient is cheap.
-
     if (!isOpen) return null;
 
     const handleCreate = async (e: React.FormEvent) => {
@@ -42,49 +38,34 @@ export const CreateUserModal = ({
         setLoading(true);
         setError(null);
 
-        // Create client specifically for this action
-        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-        const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-        const tempSupabase = createClient(supabaseUrl, supabaseKey, {
-            auth: {
-                persistSession: false,
-                autoRefreshToken: false,
-                detectSessionInUrl: false
-            }
-        });
-
         try {
-            // 1. Sign Up the new user using the temporary client
-            const { data, error: signUpError } = await tempSupabase.auth.signUp({
-                email,
-                password,
-                options: {
-                    data: {
-                        username,
-                        role,
-                        created_by: creatorId
-                    }
-                }
+            // Use RPC to bypass Auth Rate Limits and auto-verify email
+            const { data, error: rpcError } = await supabase.rpc('create_user_admin', {
+                new_email: email,
+                new_password: password,
+                new_username: username,
+                new_role: role,
+                creator_id: creatorId
             });
 
-            if (signUpError) throw signUpError;
+            if (rpcError) throw rpcError;
+            if (data && data.error) throw new Error(data.error);
 
-            if (data.user) {
-                // Success!
-                setShowSuccess(true);
-                // Clear form
-                setEmail('');
-                setPassword('');
-                setUsername('');
-                setRole(allowedRoles[0] || 'user');
+            // Success!
+            setShowSuccess(true);
+            // Clear form
+            setEmail('');
+            setPassword('');
+            setUsername('');
+            setRole(allowedRoles[0] || 'user');
 
-                // Allow user to see success message before closing
-                setTimeout(() => {
-                    setShowSuccess(false);
-                    onSuccess();
-                    onClose();
-                }, 2000);
-            }
+            // Allow user to see success message before closing
+            setTimeout(() => {
+                setShowSuccess(false);
+                onSuccess();
+                onClose();
+            }, 2000);
+
         } catch (err: any) {
             console.error("Creation error:", err);
             setError(err.message || 'Failed to create user');
